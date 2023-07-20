@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1><strong>Delete Driver</strong></h1>
+  <p>Are you sure that you want to delete position {{ position.name }}?</p>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes, I want to delete!" class="btn-danger">
+    <input type="button" onclick="window.location.href='{% url 'task_manager:position-list' %}'" value="No, I want return to worker list!" class="btn-success">
+  </form>
+{% endblock %}

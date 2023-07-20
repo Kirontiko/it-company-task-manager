@@ -3,9 +3,7 @@
 {% block content %}
   <h1>
     Username: {{ worker.username }}
-    <a href="#" class="btn btn-danger link-to-page">
-      Delete
-    </a>
+
 
   </h1>
 
@@ -44,4 +42,11 @@
       <p>This worker has no tasks now</p>
     {% endif %}
   </div>
+
+  <a href="{% url 'task_manager:worker-update' pk=worker.id %}" class="btn btn-primary">
+    Update
+  </a>
+  <a href="{% url 'task_manager:worker-delete' pk=worker.id %}" class="btn btn-danger">
+      Delete
+  </a>
 {% endblock %}

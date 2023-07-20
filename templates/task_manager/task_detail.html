@@ -8,9 +8,10 @@
     </a>
 
   </h1>
-
+  <div></div>
   <p><strong>Task description:</strong></p>
-  <p>{{ task.description }}</p>
+  <div class="decription">{{ task.description }}</div>
+  <br>
   <p><strong>Task deadline:</strong> {{ task.deadline }}</p>
   <p><strong>Is completed:</strong> {{ task.is_completed }}</p>
 
@@ -38,4 +39,10 @@
       <p>There are no workers assigned to this task</p>
     {% endif %}
   </div>
+  <a href="{% url 'task_manager:task-update' pk=task.id %}" class="btn btn-primary">
+    Update
+  </a>
+  <a href="{% url 'task_manager:task-delete' pk=task.id %}" class="btn btn-danger">
+      Delete
+  </a>
 {% endblock %}

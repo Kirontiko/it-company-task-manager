@@ -15,3 +15,17 @@
     margin: 0 2px 0 2px;
 }
 
+.form-content {
+    margin: 10px;
+}
+
+.decription{
+    max-width: 500px;
+    word-wrap: break-word;
+
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+

@@ -10,11 +10,15 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
     {% for task_type in task_type_list %}
       <tr>
         <td>{{ task_type.id }}</td>
         <td>{{ task_type.name }}</td>
+        <td><a href="{% url 'task_manager:task_type-update' pk=task_type.id %}">Update</a></td>
+        <td><a href="{% url 'task_manager:task_type-delete' pk=task_type.id %}">Delete</a></td>
       </tr>
     {% endfor %}
 

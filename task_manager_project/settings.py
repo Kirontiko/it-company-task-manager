@@ -75,6 +75,9 @@ TEMPLATES = [
     },
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 WSGI_APPLICATION = "task_manager_project.wsgi.application"
 
 

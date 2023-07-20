@@ -12,6 +12,8 @@
         <th>Deadline</th>
         <th>Is Completed</th>
         <th>Priority</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
     {% for task in task_list %}
       {% if task.is_completed %}
@@ -24,6 +26,8 @@
         <td>{{ task.deadline }}</td>
         <td>{{ task.is_completed }}</td>
         <td>{{ task.priority }}</td>
+        <td><a href="{% url 'task_manager:task-update' pk=task.id %}">Update</a></td>
+        <td><a href="{% url 'task_manager:task-delete' pk=task.id %}">Delete</a></td>
       </tr>
     {% endfor %}
 
