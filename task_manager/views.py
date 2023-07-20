@@ -29,9 +29,19 @@ class WorkerListView(generic.ListView):
     paginate_by = 10
 
 
+class WorkerDetailView(generic.DetailView):
+    model = Worker
+
+
+
 class TaskListView(generic.ListView):
     model = Task
     paginate_by = 10
+
+
+class TaskDetailView(generic.DetailView):
+    model = Task
+
 
 
 class TaskTypeListView(generic.ListView):

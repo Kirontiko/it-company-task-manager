@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    <strong>{{ task.name }} ({{ task.task_type }})</strong>
+    <a href="#" class="btn btn-danger link-to-page">
+      Delete
+    </a>
+
+  </h1>
+
+  <p><strong>Task description:</strong></p>
+  <p>{{ task.description }}</p>
+  <p><strong>Task deadline:</strong> {{ task.deadline }}</p>
+  <p><strong>Is completed:</strong> {{ task.is_completed }}</p>
+
+  <div class="ml-3">
+    <h4>Workers</h4>
+    {% if task.assignees.all %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Username</th>
+        <th>Position</th>
+      </tr>
+    {% for worker in task.assignees.all %}
+        <td>{{ worker.id }}</td>
+
+        <td><a href="{% url 'task_manager:worker-detail' pk=worker.id %}">{{ worker.first_name }} {{ worker.last_name }}</a></td>
+        <td>{{ worker.username}}</td>
+        <td>{{ worker.position }}</td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no tasks in the task list.</p>
+    {% endif %}
+  </div>
+{% endblock %}
