@@ -1,0 +1,17 @@
+.name {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.article_name {
+    margin-left: 30vw;
+}
+
+.ul-modified {
+    list-style: none;
+}
+
+.link-to-page {
+    float: right;
+    margin: 0 2px 0 2px;
+}
+
