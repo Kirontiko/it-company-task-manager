@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand name" href="#"><strong>Managinator3000</strong></a>
+  <a class="navbar-brand name" href="{% url 'task_manager:index' %}"><strong>Managinator3000</strong></a>
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
@@ -16,5 +16,15 @@
         <a class="nav-link" href="{% url 'task_manager:position-list' %}">Positions</a>
       </li>
     </ul>
+
   </div>
+   {% if user.is_authenticated %}
+    <div>
+      <span class="link-to-page"> Hello, {{ user.username }}! </span>
+      <hr>
+      <a href="{% url 'logout' %}?next={{request.path}}" class="link-to-page link-to-line">Logout</a>
+    </div>
+  {% else %}
+    <a href="{% url 'login'%}?next={{request.path}}" class="link-to-page">Login</a>
+  {% endif %}
 </nav>

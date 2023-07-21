@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1><strong>Delete Driver</strong></h1>
-  <p>Are you sure that you want to delete worker {{ task_type.name }}?</p>
-  <p class="text-danger"> Be careful, all linked tasks will be deleted!</p>
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes, I want to delete!" class="btn-danger">
-    <input type="button" onclick="window.location.href='{% url 'task_manager:task-type-list' %}'" value="No, I want return to task type list!" class="btn-success">
-  </form>
+  <div class="form-content">
+    <h1><strong>Delete Driver</strong></h1>
+    <p>Are you sure that you want to delete worker {{ task_type.name }}?</p>
+    <p class="text-danger"> Be careful, all linked tasks will be deleted!</p>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Yes, I want to delete!" class="btn-danger">
+      <input type="button" onclick="window.location.href='{% url 'task_manager:task-type-list' %}'" value="No, I want return to task type list!" class="btn-success">
+    </form>
+  </div>
 {% endblock %}

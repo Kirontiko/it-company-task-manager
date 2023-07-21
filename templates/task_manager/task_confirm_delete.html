@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1><strong>Delete Driver</strong></h1>
-  <p>Are you sure that you want to delete task {{ task.name }} ({{ task.task_type }})?</p>
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes, I want to delete!" class="btn-danger">
-    <input type="button" onclick="window.location.href='{% url 'task_manager:task-list' %}'" value="No, I want return to task list!" class="btn-success">
-  </form>
+  <div class="form-content">
+    <h1><strong>Delete Driver</strong></h1>
+    <p>Are you sure that you want to delete task {{ task.name }} ({{ task.task_type }})?</p>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Yes, I want to delete!" class="btn-danger">
+      <input type="button" onclick="window.location.href='{% url 'task_manager:task-list' %}'" value="No, I want return to task list!" class="btn-success">
+    </form>
+  </div>
 {% endblock %}

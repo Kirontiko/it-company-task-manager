@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <div class="form-content">
     <h1>
       Positions list
+      <a href="{% url 'task_manager:position-create' %}" class="btn btn-primary link-to-page">
+        Create
+      </a>
     </h1>
 
     {% if position_list %}
@@ -26,4 +30,5 @@
     {% else %}
       <p>There are no positions available.</p>
     {% endif %}
+  </div>
 {% endblock %}

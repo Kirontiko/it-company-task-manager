@@ -33,6 +33,7 @@ class WorkerListView(generic.ListView):
 
 class WorkerDetailView(generic.DetailView):
     model = Worker
+    queryset = Worker.objects.select_related("position")
 
 
 class WorkerCreateView(generic.CreateView):
