@@ -1,17 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="form-content">
+  <div class="main-content">
+
+    <div>
+      <form action="{% url "task_manager:task-update-worker" pk=task.id %}"
+             method="post">
+        {% csrf_token %}
+        <h1>
+            <strong>{{ task.name }} ({{ task.task_type }})</strong>
+            {% if request.user in task.assignees.all %}
+              <input
+                  type="submit"
+                  class="btn btn-danger link-to-page"
+                  value="Remove me from this task" />
+            {% else %}
+              <input
+                  type="submit"
+                  class="btn btn-success link-to-page"
+                  value="Assign me to this task" />
+            {% endif %}
+        </h1>
+
+      </form>
 
 
-    <h1>
-      <strong>{{ task.name }} ({{ task.task_type }})</strong>
-      <a href="#" class="btn btn-danger link-to-page">
-        Delete
-      </a>
-
-    </h1>
-    <div></div>
+    </div>
     <p><strong>Task description:</strong></p>
     <div class="decription">
       {% if task.description %}

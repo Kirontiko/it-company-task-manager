@@ -2,8 +2,8 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <div class="form-content">
-    <h1 class="form-content">{{ object|yesno:"Update,Create" }} worker</h1>
+  <div class="main-content">
+    <h1 class="main-content">{{ object|yesno:"Update,Create" }} worker</h1>
     <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ form|crispy }}

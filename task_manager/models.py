@@ -24,9 +24,13 @@ class Worker(AbstractUser):
                                  related_name="workers",
                                  on_delete=models.SET_NULL,
                                  null=True)
+    first_name = models.CharField(max_length=255,
+                                  default="John")
+    last_name = models.CharField(max_length=255,
+                                 default="Doe")
 
     class Meta:
-        ordering = ["first_name", "last_name"]
+        ordering = ["username"]
 
     def __str__(self) -> str:
         return f"{self.username} ({self.first_name} {self.last_name})"

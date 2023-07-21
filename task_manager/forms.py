@@ -24,6 +24,17 @@ class WorkerPositionUpdateForm(forms.ModelForm):
         fields = ["position"]
 
 
+class WorkerUsernameSearchForm(forms.Form):
+    placeholder = {
+        "placeholder": "Search by username"
+    }
+    username = forms.CharField(max_length=255,
+                            required=False,
+                            label="",
+                            widget=forms.TextInput(attrs=placeholder))
+
+
+
 class BaseTaskDeadlineValidationForm(forms.ModelForm):
     class Meta:
         model = Task
@@ -41,10 +52,6 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        assignees = forms.ModelMultipleChoiceField(
-            queryset=get_user_model().objects.all(),
-            widget=forms.CheckboxSelectMultiple,
-        )
         fields = "__all__"
         widgets = {
             "deadline": forms.DateInput(
@@ -60,6 +67,11 @@ class TaskForm(forms.ModelForm):
 
 
 class TaskCreationForm(TaskForm, BaseTaskDeadlineValidationForm):
+    assignees = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
     class Meta:
         model = Task
         fields = TaskForm.Meta.fields
@@ -67,11 +79,47 @@ class TaskCreationForm(TaskForm, BaseTaskDeadlineValidationForm):
 
 
 class TaskUpdateForm(TaskForm, BaseTaskDeadlineValidationForm):
+    assignees = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
     class Meta:
         model = Task
         fields = ["name",
                   "description",
                   "deadline",
                   "is_completed",
-                  "priority"]
+                  "priority",
+                  "assignees"]
         widgets = TaskForm.Meta.widgets
+
+
+class TaskNameSearchForm(forms.Form):
+    placeholder = {
+        "placeholder": "Search by task name"
+    }
+    name = forms.CharField(max_length=255,
+                           required=False,
+                           label="",
+                           widget=forms.TextInput(attrs=placeholder))
+
+
+class TaskTypeNameSearchForm(forms.Form):
+    placeholder = {
+        "placeholder": "Search by task type name"
+    }
+    name = forms.CharField(max_length=255,
+                           required=False,
+                           label="",
+                           widget=forms.TextInput(attrs=placeholder))
+
+
+class PositionNameSearchForm(forms.Form):
+    placeholder = {
+        "placeholder": "Search by position name"
+    }
+    name = forms.CharField(max_length=255,
+                           required=False,
+                           label="",
+                           widget=forms.TextInput(attrs=placeholder))

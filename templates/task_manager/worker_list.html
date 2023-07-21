@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 
+
 {% block content %}
-    <div class="form-content">
+    <div class="main-content">
       <h1>
         Worker List
         <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">
           Create
         </a>
       </h1>
-
+      {% include "includes/search_form.html" %}
       {% if worker_list %}
       <table class="table">
         <tr>

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="main-content">
+    <h1>
+      <strong>{{ position.name }}</strong>
+      <a href="{% url 'task_manager:position-update' pk=position.id%}" class="btn btn-primary link-to-page">
+        Update
+      </a>
+      <a href="{% url 'task_manager:position-delete' pk=position.id %}" class="btn btn-danger link-to-page">
+        Delete
+      </a>
+    </h1>
+
+  <h3><strong>All workers holding this position</strong></h3>
+  {% if position.workers.all %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+    {% for worker in position.workers.all %}
+      <tr>
+        <td><a href="{% url 'task_manager:worker-detail' pk=worker.id %}">
+          {% if worker.first_name or worker.last_name %}
+
+            {{ worker.first_name }} {{ worker.last_name }}
+          {% else %}
+            Unknown worker
+          {% endif %}
+        </a></td>
+        <td>{{ worker.username }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+  {% else %}
+    <h4>Oops...There is no employees holding this position</h4>
+  {% endif %}
+  </div>
+{% endblock %}

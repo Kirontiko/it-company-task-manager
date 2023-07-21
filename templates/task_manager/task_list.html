@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="form-content">
+  <div class="main-content">
     <h1>
       Task List
 
@@ -8,6 +8,7 @@
         Create
       </a>
     </h1>
+    {% include "includes/search_form.html" %}
     {% if task_list %}
       <table class="table">
         <tr>

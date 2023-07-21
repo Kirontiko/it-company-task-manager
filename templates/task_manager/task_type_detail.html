@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="main-content">
+    <h1><strong>{{ task_type.name }}</strong></h1>
+    <h3><strong>All tasks related to this type</strong></h3>
+    {% if task_type.tasks.all %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Deadline</th>
+            <th>Is completed</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        {% for task in task_type.tasks.all %}
+          <tr>
+            <td><a href="{% url 'task_manager:task-detail' pk=task.id %}">{{ task.name }}</a></td>
+            <td>{{ task.deadline }}</td>
+            <td>{{ task.is_completed }}</td>
+            <td>{{ task.priority }}</td>
+          </tr>
+
+        {% endfor %}
+      </table>
+    {% else %}
+      There is no pinned tasks here
+    {% endif %}
+  </div>
+{% endblock %}
