@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.core.exceptions import ValidationError
 
-from task_manager.models import Worker, Task
+from task_manager.models import Worker, Task, Position
 
 
 class WorkerCreationForm(UserCreationForm):
@@ -15,6 +15,7 @@ class WorkerCreationForm(UserCreationForm):
             "position",
             "first_name",
             "last_name",
+            "email"
         )
 
 
@@ -32,7 +33,6 @@ class WorkerUsernameSearchForm(forms.Form):
                             required=False,
                             label="",
                             widget=forms.TextInput(attrs=placeholder))
-
 
 
 class BaseTaskDeadlineValidationForm(forms.ModelForm):
@@ -123,3 +123,16 @@ class PositionNameSearchForm(forms.Form):
                            required=False,
                            label="",
                            widget=forms.TextInput(attrs=placeholder))
+
+
+class PositionCreateOrUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Position
+        fields = "__all__"
+
+    def clean_name(self) -> str:
+        name = self.cleaned_data["name"]
+        if name in Position.objects.values_list('name', flat=True):
+            raise ValidationError("The position is already exists!")
+
+        return name

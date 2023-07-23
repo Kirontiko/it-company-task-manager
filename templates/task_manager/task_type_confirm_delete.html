@@ -2,13 +2,26 @@
 
 {% block content %}
   <div class="main-content">
-    <h1><strong>Delete Driver</strong></h1>
-    <p>Are you sure that you want to delete worker {{ task_type.name }}?</p>
-    <p class="text-danger"> Be careful, all linked tasks will be deleted!</p>
-    <form action="" method="POST">
-      {% csrf_token %}
-      <input type="submit" value="Yes, I want to delete!" class="btn-danger">
-      <input type="button" onclick="window.location.href='{% url 'task_manager:task-type-list' %}'" value="No, I want return to task type list!" class="btn-success">
-    </form>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+
+              <div class="mb-md-2 mt-md-4 pb-4">
+                <h1><strong>Delete Task Type</strong></h1>
+                <p>Are you sure that you want to delete task type {{ task_type.name }}?</p>
+                <p class="text-danger"> Be careful, all linked tasks will be deleted!</p>
+                <form action="" method="POST">
+                  {% csrf_token %}
+                  <input type="submit" value="Yes, I want to delete!" class="btn btn-danger" style="margin-bottom: 10px">
+                  <input type="button" onclick="window.location.href='{% url 'task_manager:task-type-list' %}'" value="No, I want to return" class="btn btn-success">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 {% endblock %}

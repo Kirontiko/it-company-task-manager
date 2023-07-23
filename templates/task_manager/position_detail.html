@@ -4,7 +4,7 @@
   <div class="main-content">
     <h1>
       <strong>{{ position.name }}</strong>
-      <a href="{% url 'task_manager:position-update' pk=position.id%}" class="btn btn-primary link-to-page">
+      <a href="{% url 'task_manager:position-update' pk=position.id%}" class="btn btn-secondary link-to-page">
         Update
       </a>
       <a href="{% url 'task_manager:position-delete' pk=position.id %}" class="btn btn-danger link-to-page">
@@ -13,30 +13,82 @@
     </h1>
 
   <h3><strong>All workers holding this position</strong></h3>
-  {% if position.workers.all %}
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Full Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-    {% for worker in position.workers.all %}
-      <tr>
-        <td><a href="{% url 'task_manager:worker-detail' pk=worker.id %}">
-          {% if worker.first_name or worker.last_name %}
 
-            {{ worker.first_name }} {{ worker.last_name }}
-          {% else %}
-            Unknown worker
-          {% endif %}
-        </a></td>
-        <td>{{ worker.username }}</td>
-      </tr>
-    {% endfor %}
-    </table>
-  {% else %}
-    <h4>Oops...There is no employees holding this position</h4>
-  {% endif %}
+    {% if position.workers.all %}
+    <div class="row">
+      {% for worker in position.workers.all %}
+          <div class="col-xl-6 mb-4">
+            <div class="card">
+              <div class="card-body worker-card"
+                   onclick="window.location.href='{% url 'task_manager:position-detail' pk=worker.id %}'">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+
+                    <img
+                      src="https://i.imgur.com/h97S7uq.jpg"
+                      alt=""
+                      style="width: 45px; height: 45px"
+                      class="rounded-circle"
+                    />
+                    <div class="ms-3">
+                     {% if worker.first_name or worker.last_name %}
+                       <strong style="padding-left: 10px;">{{ worker.first_name }} {{ worker.last_name }} (username: {{ worker.username }})</strong>
+                     {% else %}
+                       <strong style="padding-left: 10px;">John Doe ({{ worker.username }})</strong>
+                     {% endif %}
+                     {% if worker.email %}
+                       <p class="text-muted mb-0" style="padding-left: 10px;">{{ worker.email }}</p>
+                     {% else %}
+                       <p class="text-muted mb-0" style="padding-left: 10px;">example@email.com</p>
+                     {% endif %}
+                    </div>
+                  </div>
+
+                  <span class="badge rounded-pill badge-success">{{ worker.position }}</span>
+                </div>
+              </div>
+              <div
+                class="card-footer border-0 bg-light p-2 d-flex justify-content-around"
+              >
+                <a
+                  class="btn btn-link m-0 text-reset"
+                  href="{% url 'task_manager:position-update' pk=position.id %}"
+                  role="button"
+                  data-ripple-color="primary"
+                  >Update</a>
+                <a
+                  class="btn btn-link m-0 text-reset"
+                  href="{% url 'task_manager:position-delete' pk=position.id %}"
+                  role="button"
+                  data-ripple-color="primary"
+                  >Delete</a>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+
+    {% else %}
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+
+                <div class="mb-md-2 mt-md-4 pb-4">
+                  <h4>Workers are not found</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    <a href="{% url 'task_manager:position-update' pk=position.id %}" class="btn btn-secondary">
+      Update
+    </a>
+    <a href="{% url 'task_manager:position-delete' pk=position.id %}" class="btn btn-danger">
+        Delete
+    </a>
   </div>
 {% endblock %}

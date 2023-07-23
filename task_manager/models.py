@@ -24,10 +24,15 @@ class Worker(AbstractUser):
                                  related_name="workers",
                                  on_delete=models.SET_NULL,
                                  null=True)
+
     first_name = models.CharField(max_length=255,
                                   default="John")
     last_name = models.CharField(max_length=255,
                                  default="Doe")
+    email = models.EmailField(
+        max_length=255,
+        default="johndoe@example.com"
+    )
 
     class Meta:
         ordering = ["username"]

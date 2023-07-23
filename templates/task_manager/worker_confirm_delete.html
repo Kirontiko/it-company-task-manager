@@ -2,12 +2,29 @@
 
 {% block content %}
   <div class="main-content">
-    <h1><strong>Delete Driver</strong></h1>
-    <p>Are you sure that you want to delete worker {{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})?</p>
-    <form action="" method="POST">
-      {% csrf_token %}
-      <input type="submit" value="Yes, I want to delete!" class="btn-danger">
-      <input type="button" onclick="window.location.href='{% url 'task_manager:worker-list' %}'" value="No, I want return to worker list!" class="btn-success">
-    </form>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+
+              <div class="mb-md-2 mt-md-4 pb-4">
+                <h1><strong>Delete Worker account</strong></h1>
+                <p>Are you sure that you want to delete worker account:
+                  <strong>
+                    {{ worker.first_name }} {{ worker.last_name }} ({{ worker.username }})
+                  </strong>
+                  ?</p>
+                <form action="" method="POST">
+                  {% csrf_token %}
+                  <input type="submit" value="Yes, I want to delete!" class="btn btn-danger" style="margin-bottom: 10px">
+                  <input type="button" onclick="window.location.href='{% url 'task_manager:task-type-list' %}'" value="No, I want to return" class="btn btn-success">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 {% endblock %}

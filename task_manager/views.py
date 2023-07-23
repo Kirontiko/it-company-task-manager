@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
@@ -5,7 +6,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from task_manager.forms import WorkerCreationForm, TaskCreationForm, WorkerPositionUpdateForm, TaskUpdateForm, \
-    WorkerUsernameSearchForm, TaskNameSearchForm, TaskTypeNameSearchForm, PositionNameSearchForm
+    WorkerUsernameSearchForm, TaskNameSearchForm, TaskTypeNameSearchForm, PositionNameSearchForm, \
+    PositionCreateOrUpdateForm
 from task_manager.models import (
     Worker,
     Position,
@@ -14,7 +16,7 @@ from task_manager.models import (
 )
 
 
-class IndexView(LoginRequiredMixin, generic.View):
+class IndexView(generic.View):
 
     def get(self, request):
         context = {
@@ -78,7 +80,7 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
-    paginate_by = 10
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
@@ -125,7 +127,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_type_list"
     template_name = "task_manager/task_type_list.html"
-    paginate_by = 10
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskTypeListView, self).get_context_data(**kwargs)
@@ -206,13 +208,17 @@ class PositionDetailView(LoginRequiredMixin, generic.DetailView):
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
-    fields = "__all__"
+    form_class = PositionCreateOrUpdateForm
     success_url = reverse_lazy("task_manager:position-list")
+
+    def form_valid(self, form):
+        self.object = form.save()
+        return super().form_valid(form)
 
 
 class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Position
-    fields = "__all__"
+    form_class = PositionCreateOrUpdateForm
     success_url = reverse_lazy("task_manager:position-list")
 
 

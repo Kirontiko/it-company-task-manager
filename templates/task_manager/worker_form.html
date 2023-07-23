@@ -2,13 +2,73 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <div class="main-content">
-    <h1 class="main-content">{{ object|yesno:"Update,Create" }} worker</h1>
-    <form action="" method="post" novalidate>
-      {% csrf_token %}
-      {{ form|crispy }}
+  <section class="gradient-custom wrapper" style="background-size: 100%">
+    <div class="main-content">
+      <div class="container py-4 h-100" id="blockContent">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
 
-      <input type="submit" value="Submit" class="btn btn-primary">
-    </form>
-  </div>
+                <div class="mb-md-5 mt-md-4 pb-5">
+                  <h1>{{ object|yesno:"Update,Create" }} worker</h1>
+                  <form action="" method="post" novalidate>
+                    {% csrf_token %}
+                    {% if object %}
+                      {{ form.position|as_crispy_field }}
+                    {% else %}
+                      <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeLoginX">Username*</label>
+                        <input type="text" id="typeLoginX" class="form-control form-control-lg" name="{{ form.username.name }}">
+                      </div>
+                      <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typePasswordX">Password*</label>
+                        <input type="password" id="typePasswordX" class="form-control form-control-lg" name="{{ form.password1.name }}">
+                        {% if form.password1.errors %}
+                          <ul>
+                            {% for error in form.password1.errors %}
+                              <li>{{ error }}</li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </div>
+                      <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typePasswordConfirmX">Password confirmation*</label>
+                        <input type="password" id="typePasswordConfirmX" class="form-control form-control-lg" name="{{ form.password2.name }}">
+                        {% if form.password2.errors %}
+                          <ul>
+                            {% for error in form.password2.errors %}
+                              <li class="text-danger">{{ error }}</li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </div>
+                      <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeEmailX">Email*</label>
+                        <input type="email" id="typeEmailX" class="form-control form-control-lg" name="{{ form.email.name }}" value="example@example.com">
+                      </div>
+                      <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeFirstNameX">First Name</label>
+                        <input type="text" id="typeFirstNameX" class="form-control form-control-lg" name="{{ form.first_name.name }}" value="John">
+                      </div>
+                      <div class="form-outline form-white mb-4">
+                        <label class="form-label" for="typeLastNameX">Last Name</label>
+                        <input type="text" id="typeLastNameX" class="form-control form-control-lg" name="{{ form.last_name.name }}" value="Doe">
+                      </div>
+                      <div class="form-outline form-white mb-4">
+                        {{ form.position|as_crispy_field }}
+                      </div>
+                    {% endif %}
+
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
