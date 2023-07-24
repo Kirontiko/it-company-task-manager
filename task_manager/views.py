@@ -5,9 +5,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerCreationForm, TaskCreationForm, WorkerPositionUpdateForm, TaskUpdateForm, \
-    WorkerUsernameSearchForm, TaskNameSearchForm, TaskTypeNameSearchForm, PositionNameSearchForm, \
-    PositionCreateOrUpdateForm
+from task_manager.forms import (WorkerCreationForm,
+                                TaskCreationForm,
+                                WorkerPositionUpdateForm,
+                                TaskUpdateForm,
+                                WorkerUsernameSearchForm,
+                                TaskNameSearchForm,
+                                TaskTypeNameSearchForm,
+                                PositionNameSearchForm)
 from task_manager.models import (
     Worker,
     Position,
@@ -208,7 +213,7 @@ class PositionDetailView(LoginRequiredMixin, generic.DetailView):
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
-    form_class = PositionCreateOrUpdateForm
+    fields = "__all__"
     success_url = reverse_lazy("task_manager:position-list")
 
     def form_valid(self, form):
@@ -218,7 +223,7 @@ class PositionCreateView(LoginRequiredMixin, generic.CreateView):
 
 class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Position
-    form_class = PositionCreateOrUpdateForm
+    fields = "__all__"
     success_url = reverse_lazy("task_manager:position-list")
 
 

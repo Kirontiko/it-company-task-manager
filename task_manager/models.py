@@ -31,6 +31,8 @@ class Worker(AbstractUser):
                                  default="Doe")
     email = models.EmailField(
         max_length=255,
+        null=True,
+        blank=True,
         default="johndoe@example.com"
     )
 
@@ -53,7 +55,6 @@ class Task(models.Model):
     description = models.TextField(null=True, blank=True)
     deadline = models.DateField()
     is_completed = models.BooleanField(default=False)
-
     priority = models.CharField(choices=PRIORITY_CHOICES, max_length=4)
     task_type = models.ForeignKey(TaskType,
                                   related_name="tasks",

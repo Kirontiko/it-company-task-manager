@@ -124,15 +124,3 @@ class PositionNameSearchForm(forms.Form):
                            label="",
                            widget=forms.TextInput(attrs=placeholder))
 
-
-class PositionCreateOrUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Position
-        fields = "__all__"
-
-    def clean_name(self) -> str:
-        name = self.cleaned_data["name"]
-        if name in Position.objects.values_list('name', flat=True):
-            raise ValidationError("The position is already exists!")
-
-        return name
