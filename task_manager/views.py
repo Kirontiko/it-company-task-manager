@@ -243,3 +243,4 @@ class TaskUpdateWorkerView(LoginRequiredMixin, generic.UpdateView):
             task.assignees.add(worker)
 
         return redirect("task_manager:task-detail", pk=kwargs["pk"])
+

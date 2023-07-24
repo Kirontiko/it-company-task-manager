@@ -5,7 +5,8 @@ from datetime import datetime, date
 from task_manager.forms import (Worker,
                                 WorkerCreationForm,
                                 WorkerPositionUpdateForm,
-                                TaskCreationForm, TaskUpdateForm)
+                                TaskCreationForm,
+                                TaskUpdateForm)
 from task_manager.models import Position, TaskType
 
 
