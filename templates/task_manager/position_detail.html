@@ -4,12 +4,6 @@
   <div class="main-content">
     <h1>
       <strong>{{ position.name }}</strong>
-      <a href="{% url 'task_manager:position-update' pk=position.id%}" class="btn btn-secondary link-to-page">
-        Update
-      </a>
-      <a href="{% url 'task_manager:position-delete' pk=position.id %}" class="btn btn-danger link-to-page">
-        Delete
-      </a>
     </h1>
 
   <h3><strong>All workers holding this position</strong></h3>
