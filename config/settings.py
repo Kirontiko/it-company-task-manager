@@ -33,7 +33,7 @@ DEBUG = os.getenv("DJANGO_DEBUG") != "False"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "task_manager.onrender.com"
+    "task-manager-n7we.onrender.com"
 ]
 
 INTERNAL_IPS = [
