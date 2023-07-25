@@ -318,3 +318,6 @@ fabric.properties
 # Celery stuff
 
 # SageMath parsed files
+staticfiles/admin/
+staticfiles/css/
+staticfiles/debug_toolbar/
