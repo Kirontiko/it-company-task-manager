@@ -1,5 +1,9 @@
 # It company task manager
 
+## Check it Out
+
+[Task Manager deployed to render](https://task-manager-n7we.onrender.com)
+
 ## Table of Contents
  1. [Introduction](#introduction)
  2. [Requirements](#requirements)
@@ -48,7 +52,7 @@ their task flow
      Django version 4.1, using settings 'config.settings'
      Starting development server at http://127.0.0.1:8000/
      Quit the server with CONTROL-C.```
-7. Click at [http://127.0.0.1:8000/]() in your terminal 
+7. Click at [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your terminal 
    and you will see Login page. Pass your login and password,
    which you`ve used while creating superuser and you will 
    access to the home page
