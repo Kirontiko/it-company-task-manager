@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "debug_toolbar",
+    "django_dump_load_utf8",
     "crispy_bootstrap4",
     "crispy_forms",
     "task_manager",
