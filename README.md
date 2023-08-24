@@ -11,6 +11,7 @@
  3. [Installation](#installation)
  4. [Used technogies](#used-technologies)
  5. [Usage](#usage)
+ 6. [UML](#uml)
 
 
 ## Introduction
@@ -72,3 +73,5 @@ their task flow
 5. Creating new positions for workers
 6. Changing deadlines for tasks and status bar(Completed or In process)
 
+## UML
+![image](https://github.com/Kirontiko/it-company-task-manager/assets/90575903/deb50426-0d98-496a-9ce2-e494d5e15dad)
