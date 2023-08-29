@@ -34,19 +34,22 @@ their task flow
      - ```python -m venv venv```
      - ```source venv/bin/activate```
 
-3. Install dependencies:
+3. Create .env file and enter required settings.
+You can look at example in .env.sample file
+
+4. Install dependencies:
     - ```pip install -r requirements.txt```
 
-4. Apply all migrations in database:
+5. Apply all migrations in database:
    - ```python manage.py migrate```
 
-5. Create superuser and apply Login and Password
+6. Create superuser and apply Login and Password
    (You can skip email)
    - ```python manage.py createsuperuser```
-6. You can load prepared data for database using this command:
+7. You can load prepared data for database using this command:
    - ```python manage.py loaddata it_task_manager_example_data.json```
 
-7. Start running django server using this command:
+8. Start running django server using this command:
    - ```python manage.py runserver```
    - You will see something like this:
    ```
@@ -56,7 +59,7 @@ their task flow
      Django version 4.1, using settings 'config.settings'
      Starting development server at http://127.0.0.1:8000/
      Quit the server with CONTROL-C.```
-8. Click at [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your terminal 
+9. Click at [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your terminal 
    and you will see Login page. Pass your login and password,
    which you`ve used while creating superuser and you will 
    access to the home page
