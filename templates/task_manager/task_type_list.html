@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="main-content">
+      <h1>
+        Task Types List
+        <a href="{% url 'task_manager:task_type-create' %}" class="btn btn-secondary link-to-page">
+          Create
+        </a>
+      </h1>
+      {% include "includes/search_form.html" %}
+      {% if task_type_list %}
+      <div class="row">
+        {% for task_type in task_type_list %}
+            <div class="col-xl-6 mb-4">
+              <div class="card">
+                <div class="card-body worker-card"
+                     onclick="window.location.href='{% url 'task_manager:task_type-detail' pk=task_type.id %}'">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1"><strong style="font-weight: bolder">{{ task_type.name }}</strong></p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div
+                  class="card-footer border-0 bg-light p-2 d-flex justify-content-around"
+                >
+                  <a
+                    class="btn btn-link m-0 text-reset"
+                    href="{% url 'task_manager:task_type-update' pk=task_type.id %}"
+                    role="button"
+                    data-ripple-color="primary"
+                    >Update</a>
+                  <a
+                    class="btn btn-link m-0 text-reset"
+                    href="{% url 'task_manager:task_type-delete' pk=task_type.id %}"
+                    role="button"
+                    data-ripple-color="primary"
+                    >Delete</a>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+      </div>
+
+      {% else %}
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+
+                  <div class="mb-md-2 mt-md-4 pb-4">
+                    <h4>Tasks Types are not found</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+  </div>
+{% endblock %}

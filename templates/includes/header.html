@@ -1,0 +1,32 @@
+<header class="header" style="position: fixed; width: 100%; z-index: 3">
+  <nav class="navbar navbar-expand-lg navbar-light gradient-custom border-custom">
+    <a class="navbar-brand name" href="{% url 'task_manager:index' %}"><strong>Managinator3000</strong></a>
+
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'task_manager:worker-list' %}">Workers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'task_manager:task-list' %}">Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'task_manager:task-type-list' %}">Task Types</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'task_manager:position-list' %}">Positions</a>
+        </li>
+      </ul>
+
+    </div>
+     {% if user.is_authenticated %}
+      <div>
+        <span class="link-to-page"> Hello, {{ user.username }}! </span>
+        <br>
+          <a href="{% url 'logout' %}" class="link-to-page link-to-line btn text-light">Logout</a>
+      </div>
+    {% else %}
+      <a href="{% url 'login'%}?next={{request.path}}" class="link-to-page btn text-light">Login</a>
+    {% endif %}
+  </nav>
+</header>

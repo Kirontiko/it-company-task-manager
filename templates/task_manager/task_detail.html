@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="main-content">
+
+    <div>
+      <form action="{% url "task_manager:task-update-worker" pk=task.id %}"
+             method="post">
+        {% csrf_token %}
+        <h1>
+            <strong>{{ task.name }} ({{ task.task_type }})</strong>
+            {% if task.is_completed %}
+              <span class="badge rounded-pill badge-success">Completed</span>
+            {% else %}
+              <span class="badge rounded-pill badge-warning">In process</span>
+            {% endif %}
+            {% if request.user in task.assignees.all %}
+              <input
+                  type="submit"
+                  class="btn btn-danger link-to-page"
+                  value="Remove me from this task" />
+            {% else %}
+              <input
+                  type="submit"
+                  class="btn btn-success link-to-page"
+                  value="Assign me to this task" />
+            {% endif %}
+        </h1>
+
+      </form>
+
+
+    </div>
+    <p><strong>Task description:</strong></p>
+    <div class="decription card bg-secondary text-white">
+      {% if task.description %}
+        {{ task.description }}
+      {% else %}
+        There is no task description now...
+      {% endif %}
+    </div>
+    <br>
+    <p><strong>Task deadline:</strong> {{ task.deadline }}</p>
+
+    <div class="ml-3">
+      <h4>Workers</h4>
+        {% if task.assignees.all %}
+          <div class="row">
+            {% for worker in task.assignees.all %}
+                <div class="col-xl-6 mb-4">
+                  <div class="card">
+                    <div class="card-body worker-card"
+                         onclick="window.location.href='{% url 'task_manager:worker-detail' pk=worker.id %}'">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+
+                          <img
+                            src="https://i.imgur.com/h97S7uq.jpg"
+                            alt=""
+                            style="width: 45px; height: 45px"
+                            class="rounded-circle"
+                          />
+                          <div class="ms-3">
+                           {% if worker.first_name or worker.last_name %}
+                             <strong style="padding-left: 10px;">{{ worker.first_name }} {{ worker.last_name }} (username: {{ worker.username }})</strong>
+                           {% else %}
+                             <strong style="padding-left: 10px;">John Doe ({{ worker.username }})</strong>
+                           {% endif %}
+                           {% if worker.email %}
+                             <p class="text-muted mb-0" style="padding-left: 10px;">{{ worker.email }}</p>
+                           {% else %}
+                             <p class="text-muted mb-0" style="padding-left: 10px;">example@email.com</p>
+                           {% endif %}
+                          </div>
+                        </div>
+
+                        <span class="badge rounded-pill badge-success">{{ worker.position }}</span>
+                      </div>
+                    </div>
+                    <div
+                      class="card-footer border-0 bg-light p-2 d-flex justify-content-around"
+                    >
+                      <a
+                        class="btn btn-link m-0 text-reset"
+                        href="{% url 'task_manager:worker-update' pk=worker.id %}"
+                        role="button"
+                        data-ripple-color="primary"
+                        >Update</a>
+                      <a
+                        class="btn btn-link m-0 text-reset"
+                        href="{% url 'task_manager:worker-delete' pk=worker.id %}"
+                        role="button"
+                        data-ripple-color="primary"
+                        >Delete</a>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+          </div>
+
+          {% else %}
+            <div class="container py-5 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+                  <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                      <div class="mb-md-2 mt-md-4 pb-4">
+                        <h4>Workers are not found</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+      </div>
+    <a href="{% url 'task_manager:task-update' pk=task.id %}" class="btn btn-secondary">
+      Update
+    </a>
+    <a href="{% url 'task_manager:task-delete' pk=task.id %}" class="btn btn-danger">
+        Delete
+    </a>
+  </div>
+{% endblock %}

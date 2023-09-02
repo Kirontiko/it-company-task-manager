@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="main-content">
+      <h1>
+        Worker List
+        <a href="{% url 'task_manager:worker-create' %}" class="btn btn-secondary link-to-page">
+          Create
+        </a>
+      </h1>
+      {% include "includes/search_form.html" %}
+      {% if worker_list %}
+      <div class="row">
+        {% for worker in worker_list %}
+            <div class="col-xl-6 mb-4">
+              <div class="card">
+                <div class="card-body worker-card"
+                     onclick="window.location.href='{% url 'task_manager:worker-detail' pk=worker.id %}'">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                      <img
+                        src="https://i.imgur.com/h97S7uq.jpg"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                      />
+                      <div class="ms-3" style="padding-left: 10px">
+                        {% if worker.first_name or worker.last_name %}
+                          <strong>{{ worker.first_name }} {{ worker.last_name }} (username: {{ worker.username }})</strong>
+                        {% else %}
+                          <strong>John Doe ({{ worker.username }})</strong>
+                        {% endif %}
+                        {% if worker.email %}
+                          <p class="text-muted mb-0">{{ worker.email }}</p>
+                        {% else %}
+                          <p class="text-muted mb-0">example@email.com</p>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <span class="badge rounded-pill badge-success">{{ worker.position }}</span>
+                  </div>
+                </div>
+                <div
+                  class="card-footer border-0 bg-light p-2 d-flex justify-content-around"
+                >
+                  <a
+                    class="btn btn-link m-0 text-reset"
+                    href="{% url 'task_manager:worker-update' pk=worker.id %}"
+                    role="button"
+                    data-ripple-color="primary"
+                    >Update</a>
+                  <a
+                    class="btn btn-link m-0 text-reset"
+                    href="{% url 'task_manager:worker-delete' pk=worker.id %}"
+                    role="button"
+                    data-ripple-color="primary"
+                    >Delete</a>
+                </div>
+              </div>
+            </div>
+        {% endfor %}
+      </div>
+
+      {% else %}
+        <p>There are no workers in the team.</p>
+      {% endif %}
+    </div>
+{% endblock %}

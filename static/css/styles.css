@@ -1,0 +1,89 @@
+.name {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  height: 100%;
+}
+
+.article_name {
+    margin-left: 30vw;
+}
+
+.ul-modified {
+    list-style: none;
+}
+
+.link-to-page {
+    float: right;
+    margin: 0 2px -5px 2px;
+    padding: 10px;
+}
+
+.main-content {
+    padding: 80px 40px 80px 40px;
+
+}
+
+.decription{
+    max-width: 500px;
+    word-wrap: break-word;
+    min-height: 50px;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.link-to-line {
+    margin-top: -20px;
+    margin-bottom: -15px;
+}
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+}
+
+.item {
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #726666, #b9b7b7);
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 140px;
+    height: 140px;
+    margin: auto auto 15px auto;
+}
+
+.border-custom {
+    border-bottom: 1px;
+    border-bottom: solid 3px lightgray;
+}
+
+.worker-card:hover {
+    cursor: pointer;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.description-in-list {
+    display: inline-block;
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    text-overflow: ellipsis;
+}
+
+

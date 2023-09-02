@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <section class="gradient-custom wrapper" style="background-size: 100%">
+    <div class="main-content">
+      <div class="container py-4 h-100" id="blockContent">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
+
+                <div class="mb-md-5 mt-md-4 pb-5">
+                  <h1>{{ object|yesno:"Update,Create" }} position</h1>
+                  <form action="" method="post" novalidate>
+                    {% csrf_token %}
+
+                    <div class="form-outline form-white mb-4">
+                      <label class="form-label" for="typePositionX">Name*</label>
+                      <input type="text" id="typePositionX" class="form-control form-control-lg" name="{{ form.name.name }}">
+                      {% if form.name.errors %}
+                        <ul>
+                          {% for error in form.name.errors %}
+                            <li class="text text-danger">{{ error }}</li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
